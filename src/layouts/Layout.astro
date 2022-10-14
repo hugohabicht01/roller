@@ -2,11 +2,12 @@
 export interface Props {
 	title: string
 	type: 'video.movie' | 'website' | 'article' | 'book' | 'profile'
-	url: string
 	image: string
+	description?: string
 }
 
-const { title, type, url, image } = Astro.props;
+const { title, type, image, description } = Astro.props;
+const socialImageURL = new URL('/ogicon.svg', Astro.url);
 ---
 
 <!DOCTYPE html>
@@ -17,8 +18,9 @@ const { title, type, url, image } = Astro.props;
 
 		<meta property="og:title" content={title} />
 		<meta property="og:type" content={type} />
-		<meta property="og:url" content={url} />
-		<meta property="og:image" content={image} />
+		<meta property="og:url" content={Astro.url} />
+		<meta property="og:image" content={socialImageURL} />
+		{description && <meta property="og:description" content={description} /> }
 
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
