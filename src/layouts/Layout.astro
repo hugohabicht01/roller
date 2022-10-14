@@ -5,9 +5,10 @@ export interface Props {
 	image: string
 	description?: string
 }
+const url = import.meta.env.VERCEL_URL ?? Astro.url
 
 const { title, type, image, description } = Astro.props;
-const socialImageURL = new URL('/ogicon.svg', Astro.url);
+const socialImageURL = new URL('/ogicon.svg', url);
 ---
 
 <!DOCTYPE html>
@@ -18,7 +19,7 @@ const socialImageURL = new URL('/ogicon.svg', Astro.url);
 
 		<meta property="og:title" content={title} />
 		<meta property="og:type" content={type} />
-		<meta property="og:url" content={Astro.url} />
+		<meta property="og:url" content={url} />
 		<meta property="og:image" content={socialImageURL} />
 		{description && <meta property="og:description" content={description} /> }
 
