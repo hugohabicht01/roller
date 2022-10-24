@@ -5,7 +5,7 @@ export interface Props {
 	image: string
 	description?: string
 }
-const url = import.meta.env.VERCEL_URL ?? Astro.url
+const url = 'https://roller-eight.vercel.app/';
 
 const { title, type, image, description } = Astro.props;
 const socialImageURL = new URL('/ogicon.svg', url);
